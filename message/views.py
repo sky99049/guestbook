@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import *
 from .models import *
-
+from django.urls import *
 # Create your views here.
 # 留言列表
 class MessageList(ListView):
@@ -18,5 +18,12 @@ class MessageDetail(DetailView):
 class MessageCreate(CreateView):
     model = Message
     fields = '__all__'          # 顯示 *所有* 欄位
-    success_url = '/message/'   # 新增成功後，導向留言列表頁面
+     # 新增成功後，導向留言列表頁面
     # 未指定 template_name 屬性，預設使用 message/message_form.html
+    def get_success_url(self):
+        return reverse('msg_list')
+# 刪除留言
+class MessageDelete(DeleteView):
+    model = Message
+    success_url = '/message/'                # 刪除成功返回留言列表
+    template_name = 'confirm_delete.html'

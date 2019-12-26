@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+
 class Message(models.Model):
     user = models.CharField("留言者", max_length=50)
     subject = models.CharField("留言主題", max_length=200)

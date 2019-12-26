@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('message/', include('message.urls')),
     path('', RedirectView.as_view(url='message/')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
